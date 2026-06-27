@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import useAuthStore from './store/useAuthStore';
 import Login from './pages/Login';
@@ -11,7 +10,7 @@ import AiAdvisor from './pages/AiAdvisor';
 import AdminDashboard from './pages/AdminDashboard';
 import Layout from './components/Layout';
 
-const ProtectedRoute = ({ children, roleRequired }: { children: JSX.Element, roleRequired?: string }) => {
+const ProtectedRoute = ({ children, roleRequired }: { children: React.ReactNode, roleRequired?: string }) => {
   const user = useAuthStore((state) => state.user);
   if (!user) return <Navigate to="/login" />;
   if (roleRequired && user.role !== roleRequired) return <Navigate to="/" />;

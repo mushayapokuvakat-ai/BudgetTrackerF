@@ -9,7 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const setAuth = useAuthStore((state) => state.setAuth);
+  const login = useAuthStore((state) => state.login);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +22,7 @@ const Register = () => {
       const data = await res.json();
       
       if (res.ok && data.status === 'success') {
-        setAuth({ ...data.data, token: data.data.token });
+        login({ ...data.data, token: data.data.token });
         navigate('/');
       } else {
         setError(data.message || 'Registration failed');
