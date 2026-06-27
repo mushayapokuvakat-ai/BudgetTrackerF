@@ -11,7 +11,7 @@ const Income = () => {
 
   const fetchIncomes = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/income', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/income`, {
         headers: { 'Authorization': `Bearer ${user?.token}` }
       });
       const data = await res.json();
@@ -28,7 +28,7 @@ const Income = () => {
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch('http://localhost:5000/api/income', {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/income`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const Income = () => {
   const handleDelete = async (id: string) => {
     if (!window.confirm('Delete this income?')) return;
     try {
-      await fetch(`http://localhost:5000/api/income/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/income/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${user?.token}` }
       });

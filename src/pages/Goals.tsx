@@ -10,7 +10,7 @@ const Goals = () => {
 
   const fetchGoals = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/goals', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/goals`, {
         headers: { 'Authorization': `Bearer ${user?.token}` }
       });
       const data = await res.json();
@@ -27,7 +27,7 @@ const Goals = () => {
   const handleAddGoal = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch('http://localhost:5000/api/goals', {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/goals`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const Goals = () => {
     if (isNaN(amount) || amount <= 0) return;
 
     try {
-      await fetch(`http://localhost:5000/api/goals/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/goals/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ const Goals = () => {
   const handleDelete = async (id: string) => {
     if (!window.confirm('Delete this goal?')) return;
     try {
-      await fetch(`http://localhost:5000/api/goals/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/goals/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${user?.token}` }
       });

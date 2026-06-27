@@ -7,7 +7,7 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/admin/users', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/users`, {
         headers: { 'Authorization': `Bearer ${user?.token}` }
       });
       const data = await res.json();
@@ -24,7 +24,7 @@ const AdminDashboard = () => {
   const handleSuspend = async (id: string) => {
     if (!window.confirm('Suspend this user?')) return;
     try {
-      await fetch(`http://localhost:5000/api/admin/suspend/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/suspend/${id}`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${user?.token}` }
       });
@@ -37,7 +37,7 @@ const AdminDashboard = () => {
   const handleDelete = async (id: string) => {
     if (!window.confirm('Delete this user?')) return;
     try {
-      await fetch(`http://localhost:5000/api/admin/delete/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/delete/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${user?.token}` }
       });

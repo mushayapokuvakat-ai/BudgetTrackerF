@@ -11,8 +11,8 @@ const Dashboard = () => {
       try {
         const headers = { 'Authorization': `Bearer ${user?.token}` };
         const [incRes, expRes] = await Promise.all([
-          fetch('http://localhost:5000/api/income', { headers }),
-          fetch('http://localhost:5000/api/expenses', { headers })
+          fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/income`, { headers }),
+          fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/expenses`, { headers })
         ]);
 
         const incData = await incRes.json();

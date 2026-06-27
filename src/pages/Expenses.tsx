@@ -11,7 +11,7 @@ const Expenses = () => {
 
   const fetchExpenses = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/expenses', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/expenses`, {
         headers: { 'Authorization': `Bearer ${user?.token}` }
       });
       const data = await res.json();
@@ -28,7 +28,7 @@ const Expenses = () => {
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch('http://localhost:5000/api/expenses', {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/expenses`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const Expenses = () => {
   const handleDelete = async (id: string) => {
     if (!window.confirm('Delete this expense?')) return;
     try {
-      await fetch(`http://localhost:5000/api/expenses/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/expenses/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${user?.token}` }
       });
