@@ -33,19 +33,64 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white p-8 border rounded shadow-sm w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center">SmartBudget AI</h2>
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input type="text" placeholder="Full Name" value={fullname} onChange={(e) => setFullname(e.target.value)} required className="border p-2 rounded" />
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required className="border p-2 rounded" />
-          <input type="tel" placeholder="WhatsApp Phone Number (e.g. +1234567890)" value={phone} onChange={(e) => setPhone(e.target.value)} className="border p-2 rounded" />
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required className="border p-2 rounded" />
-          <button type="submit" className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 font-bold">Register</button>
+    <div className="min-h-screen flex items-center justify-center bg-background text-foreground transition-colors duration-300">
+      <div className="bg-card p-10 rounded-xl border border-border shadow-2xl w-full max-w-md animate-in fade-in zoom-in-95 duration-500">
+        <h2 className="text-3xl font-bold mb-2 text-center text-primary tracking-tight">SmartBudget</h2>
+        <p className="text-center text-muted-foreground mb-8">Create your account</p>
+        
+        {error && <div className="bg-destructive/10 border border-destructive/20 text-destructive p-3 mb-6 rounded-lg text-sm text-center font-bold">{error}</div>}
+        
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-bold text-muted-foreground tracking-wide uppercase">Full Name</label>
+            <input 
+              type="text" 
+              className="w-full bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all p-3 rounded-lg text-foreground" 
+              value={fullname} 
+              onChange={(e) => setFullname(e.target.value)} 
+              required 
+              placeholder="John Doe"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-bold text-muted-foreground tracking-wide uppercase">Email Address</label>
+            <input 
+              type="email" 
+              className="w-full bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all p-3 rounded-lg text-foreground" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+              placeholder="you@example.com"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-bold text-muted-foreground tracking-wide uppercase">WhatsApp Phone</label>
+            <input 
+              type="tel" 
+              className="w-full bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all p-3 rounded-lg text-foreground" 
+              value={phone} 
+              onChange={(e) => setPhone(e.target.value)} 
+              placeholder="+1234567890"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-bold text-muted-foreground tracking-wide uppercase">Password</label>
+            <input 
+              type="password" 
+              className="w-full bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all p-3 rounded-lg text-foreground" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+              placeholder="••••••••"
+            />
+          </div>
+          <button type="submit" className="w-full bg-primary text-primary-foreground font-bold p-3 rounded-lg hover:bg-primary/90 hover:-translate-y-0.5 transition-all shadow-lg mt-2">
+            Register
+          </button>
         </form>
-        <p className="mt-4 text-center text-sm">
-          Already have an account? <Link to="/login" className="text-blue-600 hover:underline">Log in</Link>
+        
+        <p className="mt-8 text-center text-sm text-muted-foreground">
+          Already have an account? <Link to="/login" className="text-primary font-bold hover:underline ml-1">Log in</Link>
         </p>
       </div>
     </div>
